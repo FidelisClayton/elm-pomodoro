@@ -4,6 +4,7 @@ import Msgs exposing (Msg)
 import Models exposing (Model, initialModel)
 import Constants
 import Time exposing (second)
+import Task
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
@@ -13,9 +14,15 @@ update msg model =
         let
           elapsed = model.elapsed + second
           newModel = { model | elapsed = elapsed }
+
+          timeInSecondsMod = floor (Time.inSeconds elapsed) % 120
+          timeRemaining = model.timer - elapsed
         in
-          if (floor (Time.inSeconds elapsed)) % 120 == 0 then
-            ( { newModel | animate = 0 }, Cmd.none )
+          if timeRemaining == 0 then
+            if timeInSecondsMod == 0 then
+              ( { newModel | counting = False, animate = 0 }, Cmd.none )
+            else
+              ( { newModel | counting = False, animate = 1 }, Cmd.none )
           else
             ( { newModel | animate = 1 }, Cmd.none )
       else
