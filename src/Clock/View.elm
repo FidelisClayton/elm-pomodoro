@@ -18,7 +18,7 @@ styles =
 secondsView : Model -> Html Msg
 secondsView model =
   let
-    elapsedSeconds = floor (Time.inSeconds model.elapsed)
+    elapsedSeconds = floor (Time.inSeconds model.elapsed) % 120
 
     radius = 85
     circumference = 2 * pi * radius
@@ -49,7 +49,6 @@ secondsView model =
         , styles [ property "stroke-dashoffset" (toString amount) ]
         ] []
       ]
-
 
 minutesView : Model -> Html Msg
 minutesView model =
