@@ -57,7 +57,7 @@ minutesView model =
 
     radius = 90
     circumference = 2 * pi * radius
-    percentage = toFloat (elapsedSeconds * 100) / 3600
+    percentage = toFloat (elapsedSeconds * 100) / (model.timer / 1000)
     amount = ( ( 100 - percentage ) / 100 ) * circumference
   in
     svg

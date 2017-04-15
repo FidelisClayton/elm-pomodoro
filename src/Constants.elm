@@ -7,7 +7,7 @@ minute : Float
 minute = 60000
 
 socialTime : Float
-socialTime = 1 * minute
+socialTime = 5 * minute
 
 coffeeTime : Float
 coffeeTime = 15 * minute
