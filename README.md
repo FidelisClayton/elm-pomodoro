@@ -5,6 +5,8 @@ A simple pomodoro built with elm-lang.
 
 This Pomodoro app has 3 modes, **Work**, **Social** and **Coffee** which has 25 minutes, 5 minutes and 15 minutes respectively.
 
+![Elm Pomodoro](https://media.giphy.com/media/3o7btNB4C1OnTlDUd2/giphy.gif)
+
 ### Install
 After clone this repo, run `npm install` inside the project folder to install and build the project dependencies.
 
