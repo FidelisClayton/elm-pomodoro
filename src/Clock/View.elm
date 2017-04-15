@@ -18,7 +18,7 @@ styles =
 secondsView : Model -> Html Msg
 secondsView model =
   let
-    elapsedSeconds = floor (Time.inSeconds model.elapsed)
+    elapsedSeconds = floor (Time.inSeconds model.elapsed) % 120
 
     radius = 85
     circumference = 2 * pi * radius
@@ -37,6 +37,9 @@ secondsView model =
         , fill "transparent"
         , strokeDasharray <| toString circumference
         , strokeDashoffset "0"
+        , styles
+          [ property "transition" ("stroke-dashoffset " ++ (toString model.animate) ++ "s linear")
+          ]
         ] []
       , circle
         [ id "seconds-indicator"
@@ -46,10 +49,12 @@ secondsView model =
         , fill "transparent"
         , strokeDasharray <| toString circumference
         , strokeDashoffset "0"
-        , styles [ property "stroke-dashoffset" (toString amount) ]
+        , styles
+          [ property "stroke-dashoffset" (toString amount)
+          , property "transition" ("stroke-dashoffset " ++ (toString model.animate) ++ "s linear")
+          ]
         ] []
       ]
-
 
 minutesView : Model -> Html Msg
 minutesView model =
@@ -73,6 +78,9 @@ minutesView model =
         , fill "transparent"
         , strokeDasharray <| toString circumference
         , strokeDashoffset "0"
+        , styles
+          [ property "transition" ("stroke-dashoffset " ++ (toString model.animate) ++ "s linear")
+          ]
         ] []
       , circle
         [ id "minutes-indicator"
@@ -82,7 +90,10 @@ minutesView model =
         , fill "transparent"
         , strokeDasharray <| toString circumference
         , strokeDashoffset "0"
-        , styles [ property "stroke-dashoffset" (toString amount) ]
+        , styles
+          [ property "stroke-dashoffset" (toString amount)
+          , property "transition" ("stroke-dashoffset " ++ (toString model.animate) ++ "s linear")
+          ]
         ] []
       ]
 
