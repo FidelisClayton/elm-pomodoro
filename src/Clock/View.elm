@@ -37,6 +37,9 @@ secondsView model =
         , fill "transparent"
         , strokeDasharray <| toString circumference
         , strokeDashoffset "0"
+        , styles
+          [ property "transition" ("stroke-dashoffset " ++ (toString model.animate) ++ "s linear")
+          ]
         ] []
       , circle
         [ id "seconds-indicator"
@@ -46,7 +49,10 @@ secondsView model =
         , fill "transparent"
         , strokeDasharray <| toString circumference
         , strokeDashoffset "0"
-        , styles [ property "stroke-dashoffset" (toString amount) ]
+        , styles
+          [ property "stroke-dashoffset" (toString amount)
+          , property "transition" ("stroke-dashoffset " ++ (toString model.animate) ++ "s linear")
+          ]
         ] []
       ]
 
@@ -72,6 +78,9 @@ minutesView model =
         , fill "transparent"
         , strokeDasharray <| toString circumference
         , strokeDashoffset "0"
+        , styles
+          [ property "transition" ("stroke-dashoffset " ++ (toString model.animate) ++ "s linear")
+          ]
         ] []
       , circle
         [ id "minutes-indicator"
@@ -81,7 +90,10 @@ minutesView model =
         , fill "transparent"
         , strokeDasharray <| toString circumference
         , strokeDashoffset "0"
-        , styles [ property "stroke-dashoffset" (toString amount) ]
+        , styles
+          [ property "stroke-dashoffset" (toString amount)
+          , property "transition" ("stroke-dashoffset " ++ (toString model.animate) ++ "s linear")
+          ]
         ] []
       ]
 

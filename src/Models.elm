@@ -10,6 +10,7 @@ type alias Model =
   , elapsed : Time
   , counting : Bool
   , currentMode : Msgs.Modes
+  , animate : Int
   }
 
 initialModel : Model
@@ -18,6 +19,7 @@ initialModel =
   , elapsed = 0
   , counting = False
   , currentMode = Msgs.Work
+  , animate = 1
   }
 
 init : ( Model, Cmd Msg)

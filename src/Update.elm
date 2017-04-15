@@ -14,7 +14,10 @@ update msg model =
           elapsed = model.elapsed + second
           newModel = { model | elapsed = elapsed }
         in
-          ( newModel, Cmd.none )
+          if (floor (Time.inSeconds elapsed)) % 120 == 0 then
+            ( { newModel | animate = 0 }, Cmd.none )
+          else
+            ( { newModel | animate = 1 }, Cmd.none )
       else
         ( model, Cmd.none )
 
@@ -39,4 +42,5 @@ startTimer timer mode =
   | timer = timer
   , counting = True
   , currentMode = mode
+  , animate = 0
   }
