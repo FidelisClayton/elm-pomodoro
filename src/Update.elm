@@ -5,6 +5,7 @@ import Models exposing (Model, initialModel)
 import Constants
 import Time exposing (second)
 import Task
+import Alert
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
@@ -20,9 +21,9 @@ update msg model =
         in
           if timeRemaining == 0 then
             if timeInSecondsMod == 0 then
-              ( { newModel | counting = False, animate = 0 }, Cmd.none )
+              ( { newModel | counting = False, animate = 0 }, Alert.toJs True )
             else
-              ( { newModel | counting = False, animate = 1 }, Cmd.none )
+              ( { newModel | counting = False, animate = 1 }, Alert.toJs True )
           else
             ( { newModel | animate = 1 }, Cmd.none )
       else
