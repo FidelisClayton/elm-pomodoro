@@ -11,10 +11,14 @@ import Models exposing (Model, initialModel, init)
 import Clock.View exposing (clockView)
 import Constants
 import Update exposing (update)
+import Alert
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
-  Time.every second Msgs.Tick
+  Sub.batch
+    [ Time.every second Msgs.Tick
+    , Alert.requestPermissionToElm Msgs.UpdateNotificationAccess
+    ]
 
 isButtonActive : Msgs.Modes -> Msgs.Modes -> String
 isButtonActive buttonMode currentMode =
