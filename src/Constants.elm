@@ -3,7 +3,7 @@ module Constants exposing (..)
 import Time exposing (second, minute)
 
 socialTime : Float
-socialTime = 5 * minute
+socialTime = 1 * minute
 
 coffeeTime : Float
 coffeeTime = 15 * minute
