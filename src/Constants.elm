@@ -1,10 +1,6 @@
 module Constants exposing (..)
 
-second : Float
-second = 1000
-
-minute : Float
-minute = 60000
+import Time exposing (second, minute)
 
 socialTime : Float
 socialTime = 5 * minute

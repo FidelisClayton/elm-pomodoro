@@ -1,6 +1,7 @@
 module Models exposing (..)
 
 import Time exposing (Time)
+import Json.Encode exposing (Value, encode, string, object, null)
 
 import Msgs exposing (Msg)
 import Constants
@@ -13,6 +14,12 @@ type alias Model =
   , animate : Int
   }
 
+type alias Notification =
+  { title : String
+  , body : String
+  , icon : Maybe String
+  }
+
 initialModel : Model
 initialModel =
   { timer = Constants.codeTime
@@ -22,6 +29,14 @@ initialModel =
   , animate = 1
   }
 
-init : ( Model, Cmd Msg)
-init =
-  ( initialModel, Cmd.none )
+encodeNotification : Notification -> Value
+encodeNotification notification =
+  object
+    [ ("title", string notification.title)
+    , ("body", string notification.body)
+    , case notification.icon of
+        Just value ->
+          ("icon", string value)
+        Nothing ->
+          ("icon", null)
+    ]

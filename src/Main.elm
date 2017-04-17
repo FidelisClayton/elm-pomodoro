@@ -7,21 +7,20 @@ import Html.Events exposing (onClick)
 import Time exposing (Time, second)
 
 import Msgs exposing (Msg)
-import Models exposing (Model, initialModel, init)
+import Models exposing (Model, initialModel)
 import Clock.View exposing (clockView)
 import Constants
 import Update exposing (update)
+import Notification
+import Helpers exposing (isButtonActive)
+
+init : ( Model, Cmd Msg )
+init =
+  ( initialModel, Notification.requestNotificationPermission True )
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
   Time.every second Msgs.Tick
-
-isButtonActive : Msgs.Modes -> Msgs.Modes -> String
-isButtonActive buttonMode currentMode =
-  if buttonMode == currentMode then
-    "active"
-  else
-    ""
 
 view : Model -> Html Msg
 view model =

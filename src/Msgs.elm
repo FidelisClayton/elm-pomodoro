@@ -14,3 +14,4 @@ type Msg
   | StartWork
   | StartCoffee
   | StartSocial
+  | RequestPermission
