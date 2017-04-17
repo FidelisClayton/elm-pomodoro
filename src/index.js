@@ -1,8 +1,11 @@
+"use strict"
+
 require("./index.html")
-require("./index.css")
+require("./Stylesheets.elm")
 
 var Elm = require("./Main.elm")
-var mountNode = document.getElementById("main")
+var mountNode = document.getElementById("Main")
+
 
 var app = Elm.Main.embed(mountNode)
 

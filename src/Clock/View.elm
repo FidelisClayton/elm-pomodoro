@@ -1,8 +1,10 @@
 module Clock.View exposing (..)
 
 import Html exposing (Html, div, text, button)
-import Html.Attributes exposing (id, class)
+import Html.Attributes
 import Html.Events exposing (onClick)
+import Html.CssHelpers
+
 import Css exposing (property)
 import Svg exposing (Svg, circle, svg)
 import Svg.Attributes exposing (height, width, r, cx, cy, fill, strokeDasharray, strokeDashoffset)
@@ -12,8 +14,13 @@ import Models exposing (Model)
 import Msgs exposing (Msg)
 import Util exposing (paddValue)
 
+import PomodoroCss
+
+{ class, id } =
+  Html.CssHelpers.withNamespace ""
+
 styles =
-    Css.asPairs >> Html.Attributes.style
+  Css.asPairs >> Html.Attributes.style
 
 secondsView : Model -> Html Msg
 secondsView model =
@@ -26,7 +33,7 @@ secondsView model =
     amount = ( ( 100 - percentage ) / 100 ) * circumference
   in
     svg
-      [ id "seconds"
+      [ id [ PomodoroCss.Seconds ]
       , width "200px"
       , height "200px"
       ]
@@ -42,15 +49,14 @@ secondsView model =
           ]
         ] []
       , circle
-        [ id "seconds-indicator"
+        [ id [ PomodoroCss.SecondsIndicator ]
         , r <| toString radius
         , cx "100"
         , cy "100"
         , fill "transparent"
         , strokeDasharray <| toString circumference
         , strokeDashoffset "0"
-        , styles
-          [ property "stroke-dashoffset" (toString amount)
+        , styles [ property "stroke-dashoffset" (toString amount)
           , property "transition" ("stroke-dashoffset " ++ (toString model.animate) ++ "s linear")
           ]
         ] []
@@ -67,7 +73,7 @@ minutesView model =
     amount = ( ( 100 - percentage ) / 100 ) * circumference
   in
     svg
-      [ id "minutes"
+      [ id [ PomodoroCss.Minutes ]
       , width "200px"
       , height "200px"
       ]
@@ -83,7 +89,7 @@ minutesView model =
           ]
         ] []
       , circle
-        [ id "minutes-indicator"
+        [ id [ PomodoroCss.MinutesIndicator ]
         , r <| toString radius
         , cx "100"
         , cy "100"
@@ -111,14 +117,30 @@ timerView model =
 
 clockView : Model -> Html Msg
 clockView model =
-  div [ class "clock"]
+  div [ class [ PomodoroCss.Clock ]]
       [ div
-          [ class "timer" ]
+          [ class [ PomodoroCss.Timer ] ]
           [ timerView model
           , if model.counting then
-              button [ class "btn green play-pause", onClick Msgs.Pause ] [ text "Pause" ]
+              button
+                [ class
+                  [ PomodoroCss.Btn
+                  , PomodoroCss.Green
+                  , PomodoroCss.PlayPause
+                  ]
+                , onClick Msgs.Pause
+                ]
+                [ text "Pause" ]
             else
-              button [ class "btn green play-pause", onClick Msgs.Play ] [ text "Start" ]
+              button
+                [ class
+                  [ PomodoroCss.Btn
+                  , PomodoroCss.Green
+                  , PomodoroCss.PlayPause
+                  ]
+                , onClick Msgs.Play
+                ]
+                [ text "Start" ]
           ]
       , secondsView model
       , minutesView model

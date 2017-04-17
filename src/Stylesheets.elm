@@ -1,13 +1,13 @@
 port module Stylesheets exposing (..)
 
 import Css.File exposing (..)
-import PomodoroCss as Pomodoro
+import PomodoroCss
 
 port files : CssFileStructure -> Cmd msg
 
 cssFiles : CssFileStructure
 cssFiles =
-  toFileStructure [ ("pomodoro.css", compile [ Pomodoro.css])]
+  toFileStructure [ ("pomodoro.css", compile [ PomodoroCss.css])]
 
 main : CssCompilerProgram
 main =
