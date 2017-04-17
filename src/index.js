@@ -44,5 +44,5 @@ function notify(options) {
   }
 }
 
-app.ports.requestPermissionToJs.subscribe(requestPermission)
+app.ports.requestNotificationPermission.subscribe(requestPermission)
 app.ports.notify.subscribe(notify)

@@ -12,7 +12,6 @@ type alias Model =
   , counting : Bool
   , currentMode : Msgs.Modes
   , animate : Int
-  , notificationPermission : String
   }
 
 type alias Notification =
@@ -28,12 +27,7 @@ initialModel =
   , counting = False
   , currentMode = Msgs.Work
   , animate = 1
-  , notificationPermission = "undefined"
   }
-
-init : ( Model, Cmd Msg)
-init =
-  ( initialModel, Cmd.none )
 
 encodeNotification : Notification -> Value
 encodeNotification notification =
