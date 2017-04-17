@@ -4,7 +4,6 @@ import Msgs exposing (Msg)
 import Models exposing (Model, initialModel)
 import Constants
 import Time exposing (second)
-import Task
 import Notification
 
 timesUpNotification : Models.Notification
