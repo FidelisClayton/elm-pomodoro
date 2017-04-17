@@ -52,7 +52,7 @@ css =
 
     , children
       [ each [ id MinutesIndicator, id SecondsIndicator ]
-        [ property "stroke" "#OBC5D7"]
+        [ property "stroke" "#0BC5D7"]
       ]
     ]
 
