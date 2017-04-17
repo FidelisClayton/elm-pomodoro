@@ -68,6 +68,7 @@ css =
     , flexDirection column
     , alignItems center
     , margin2 zero auto
+    , marginTop (px -30)
     , padding2 (px 30) (px 15)
     , boxShadow5 zero (px 16) (px 25) zero (rgba 0 0 0 0.4)
     , justifyContent spaceBetween
@@ -140,6 +141,13 @@ css =
     , position absolute
     , zIndex (int 10)
     , marginTop (px 44)
+    ]
+
+  , mediaQuery "screen and (max-width: 600px)"
+    [ body
+      [ backgroundColor (hex "2D363C") ]
+    , class Container
+      [ boxShadow none ]
     ]
   ]
 
