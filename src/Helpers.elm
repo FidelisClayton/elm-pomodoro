@@ -1,10 +1,11 @@
 module Helpers exposing (..)
 
 import Msgs
+import PomodoroCss exposing (CssClasses)
 
-isButtonActive : Msgs.Modes -> Msgs.Modes -> String
+isButtonActive : Msgs.Modes -> Msgs.Modes -> CssClasses
 isButtonActive buttonMode currentMode =
   if buttonMode == currentMode then
-    "active"
+    PomodoroCss.Active
   else
-    ""
+    PomodoroCss.Disabled

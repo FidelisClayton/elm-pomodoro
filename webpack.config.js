@@ -16,13 +16,6 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(css|scss)$/,
-        use: [
-          'style-loader',
-          'css-loader',
-        ]
-      },
-      {
         test:    /\.html$/,
         exclude: /node_modules/,
         loader:  'file-loader?name=[name].[ext]',
@@ -42,7 +35,6 @@ module.exports = {
       }
     ],
 
-    noParse: /\.elm$/,
   },
 
   devServer: {

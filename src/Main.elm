@@ -1,18 +1,22 @@
 module Main exposing (..)
 
 import Html exposing (Html, div, text, br, button)
-import Html.Attributes exposing (class)
 import Html.Events exposing (onClick)
+import Html.CssHelpers
 
 import Time exposing (Time, second)
 
 import Msgs exposing (Msg)
 import Models exposing (Model, initialModel)
 import Clock.View exposing (clockView)
-import Constants
 import Update exposing (update)
 import Notification
 import Helpers exposing (isButtonActive)
+
+import PomodoroCss
+
+{ class } =
+  Html.CssHelpers.withNamespace ""
 
 init : ( Model, Cmd Msg )
 init =
@@ -24,27 +28,32 @@ subscriptions model =
 
 view : Model -> Html Msg
 view model =
-  div [ class "container" ]
-      [ clockView model
-      , div
-        [ class "buttons" ]
-        [ button
-            [ class ("btn btn-block " ++ isButtonActive Msgs.Work model.currentMode)
-            , onClick Msgs.StartWork
-            ]
-            [ text "Work" ]
-        , button
-            [ class ("btn btn-block " ++ isButtonActive Msgs.Social model.currentMode)
-            , onClick Msgs.StartSocial
-            ]
-            [ text "Social" ]
-        , button
-            [ class ("btn btn-block " ++ isButtonActive Msgs.Coffee model.currentMode)
-            , onClick Msgs.StartCoffee
-            ]
-            [ text "Coffee" ]
+  let
+    isWork = isButtonActive Msgs.Work model.currentMode
+    isSocial = isButtonActive Msgs.Social model.currentMode
+    isCoffee = isButtonActive Msgs.Coffee model.currentMode
+  in
+    div [ class [ PomodoroCss.Container] ]
+        [ clockView model
+        , div
+          [ class [ PomodoroCss.Buttons] ]
+          [ button
+              [ class [ PomodoroCss.Btn, PomodoroCss.Block, isWork ]
+              , onClick Msgs.StartWork
+              ]
+              [ text "Work" ]
+          , button
+              [ class [ PomodoroCss.Btn, PomodoroCss.Block, isSocial ]
+              , onClick Msgs.StartSocial
+              ]
+              [ text "Social" ]
+          , button
+              [ class [ PomodoroCss.Btn, PomodoroCss.Block, isCoffee ]
+              , onClick Msgs.StartCoffee
+              ]
+              [ text "Coffee" ]
+          ]
         ]
-      ]
 
 main : Program Never Model Msg
 main =
