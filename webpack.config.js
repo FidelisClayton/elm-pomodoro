@@ -1,10 +1,11 @@
-var path = require("path");
+var path = require('path');
+var CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   entry: {
     app: [
       './src/index.js'
-    ]
+    ],
   },
 
   output: {
@@ -49,4 +50,10 @@ module.exports = {
     stats: { colors: true },
   },
 
+  plugins: [
+    new CopyWebpackPlugin([
+      { from: './src/service-worker.js', to: './service-worker.js'},
+      { from: './src/manifest.json', to: './manifest.json'}
+    ])
+  ]
 }

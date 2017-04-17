@@ -6,6 +6,11 @@ var mountNode = document.getElementById("main")
 
 var app = Elm.Main.embed(mountNode)
 
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker
+    .register('./service-worker.js')
+}
+
 function clearFields(object) {
   const keys = Object.keys(object)
 
@@ -19,9 +24,6 @@ function clearFields(object) {
 
 function requestPermission() {
   Notification.requestPermission()
-    .then(function(result) {
-      return app.ports.requestPermissionToElm.send(result)
-    })
 }
 
 function notify(options) {

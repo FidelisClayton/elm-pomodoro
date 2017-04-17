@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.28.0",
     "elm-css-webpack-loader": "^3.1.0",
     "elm-hot-loader": "^0.5.4",
