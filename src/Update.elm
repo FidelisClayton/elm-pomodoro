@@ -5,7 +5,7 @@ import Models exposing (Model, initialModel)
 import Constants
 import Time exposing (second)
 import Task
-import Alert
+import Notification
 
 timesUpNotification : Models.Notification
 timesUpNotification =
@@ -28,9 +28,9 @@ update msg model =
         in
           if timeRemaining == 0 then
             if timeInSecondsMod == 0 then
-              ( { newModel | counting = False, animate = 0 }, Alert.notify (Models.encodeNotification <| timesUpNotification) )
+              ( { newModel | counting = False, animate = 0 }, Notification.notify (Models.encodeNotification <| timesUpNotification) )
             else
-              ( { newModel | counting = False, animate = 1 }, Alert.notify (Models.encodeNotification <| timesUpNotification) )
+              ( { newModel | counting = False, animate = 1 }, Notification.notify (Models.encodeNotification <| timesUpNotification) )
           else
             ( { newModel | animate = 1 }, Cmd.none )
       else
@@ -52,10 +52,7 @@ update msg model =
       ( { model | counting = False }, Cmd.none)
 
     Msgs.RequestPermission ->
-      ( model, Alert.requestPermissionToJs True )
-
-    Msgs.UpdateNotificationAccess value ->
-      ( { model | notificationPermission = value }, Cmd.none )
+      ( model, Notification.requestNotificationPermission True )
 
 startTimer : Float -> Msgs.Modes -> Model
 startTimer timer mode =

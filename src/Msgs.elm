@@ -15,4 +15,3 @@ type Msg
   | StartCoffee
   | StartSocial
   | RequestPermission
-  | UpdateNotificationAccess String
