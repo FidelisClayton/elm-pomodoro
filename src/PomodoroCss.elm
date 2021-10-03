@@ -140,7 +140,7 @@ css =
     [ width (px 60)
     , position absolute
     , zIndex (int 10)
-    , marginTop (px 44)
+    , marginTop (px 84)
     ]
 
   , mediaQuery "screen and (max-width: 600px)"
